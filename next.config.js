@@ -1,13 +1,3 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    async rewrites() {
-          return [
-            {
-                      source: '/api/hl',
-                      destination: 'https://api.hyperliquid.xyz/info',
-            },
-                ];
-    },
-};
-
+const nextConfig = {};
 module.exports = nextConfig;
