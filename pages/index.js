@@ -30,7 +30,7 @@ export default function Home() {
     setLoading(true); setError(null); setTraders([]); setStatus("Завантажую…");
     try {
       const pf = PERIODS.find(p=>p.key===period)?.field||"pnlAllTime";
-      const r = await fetch("/api/hl", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"leaderboard"})});
+      const r = await fetch("https://hl-proxy-production.up.railway.app", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"leaderboard"})});
       const data = await r.json();
       const rows = data?.leaderboardRows||[];
       if(!rows.length) throw new Error("Порожня відповідь");
