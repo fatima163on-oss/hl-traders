@@ -39,7 +39,7 @@ export default function Home() {
       setTraders(top); setLoading(false); setUpdated(new Date()); setStatus("↻ позиції…");
       for(let i=0;i<top.length;i++){
         try{
-          const r2=await fetch("/api/hl",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"clearinghouseState",user:top[i].addr})});
+          const r2=await fetch("https://hl-proxy-production.up.railway.app",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"clearinghouseState",user:top[i].addr})});)});
           const d=await r2.json();
           const pos=(d?.assetPositions||[]).filter(p=>parseFloat(p.position?.szi||0)!==0)
             .map(p=>({coin:p.position.coin,side:parseFloat(p.position.szi)>0?"long":"short",positionValue:Math.abs(parseFloat(p.position.positionValue||0)),entryPx:p.position.entryPx,unrealizedPnl:parseFloat(p.position.unrealizedPnl||0)}));
